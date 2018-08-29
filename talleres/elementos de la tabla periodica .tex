@@ -1,0 +1,402 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{elementos de la tabla periodica }
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{elementos}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{1.008}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hidrógeno}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{259}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{253}\PY{p}{,} \PY{l+m+mf}{0.09}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{He}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{4.003}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Helio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{He}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{272}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{269}\PY{p}{,} \PY{l+m+mf}{0.18}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Li}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{6.941}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Litio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Li}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{180}\PY{p}{,} \PY{l+m+mi}{1347}\PY{p}{,} \PY{l+m+mf}{0.53}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Be}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{9.012}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Berilio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Be}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1278}\PY{p}{,} \PY{l+m+mi}{2970}\PY{p}{,} \PY{l+m+mf}{1.85}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{10.811}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Boro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2300}\PY{p}{,} \PY{l+m+mi}{2550}\PY{p}{,} \PY{l+m+mf}{2.34}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{12.011}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Carbono}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3500}\PY{p}{,} \PY{l+m+mi}{4827}\PY{p}{,} \PY{l+m+mf}{2.26}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{14.007}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nitrógeno}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{210}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{196}\PY{p}{,} \PY{l+m+mf}{1.25}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{15.999}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Oxígeno}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{218}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{183}\PY{p}{,} \PY{l+m+mf}{1.43}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{18.998}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Flúor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{220}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{188}\PY{p}{,} \PY{l+m+mf}{1.7}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ne}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{20.18}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Neón}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ne}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{249}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{246}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Na}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{22.99}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sodio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Na}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{98}\PY{p}{,} \PY{l+m+mi}{883}\PY{p}{,} \PY{l+m+mf}{0.97}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{24.305}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Magnesio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{639}\PY{p}{,} \PY{l+m+mi}{1090}\PY{p}{,} \PY{l+m+mf}{1.74}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Al}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{26.982}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Aluminio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Al}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{660}\PY{p}{,} \PY{l+m+mi}{2467}\PY{p}{,} \PY{l+m+mf}{2.7}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Si}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{28.086}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Silicio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Si}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1410}\PY{p}{,} \PY{l+m+mi}{2355}\PY{p}{,} \PY{l+m+mf}{2.33}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{30.974}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fósforo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{44}\PY{p}{,} \PY{l+m+mi}{280}\PY{p}{,} \PY{l+m+mf}{1.82}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{32.065}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Azúfre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{113}\PY{p}{,} \PY{l+m+mi}{445}\PY{p}{,} \PY{l+m+mf}{2.07}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{35.453}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cloro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{101}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{35}\PY{p}{,} \PY{l+m+mf}{3.21}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{39.948}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Argon}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{189}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{186}\PY{p}{,} \PY{l+m+mf}{1.78}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{39.098}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Potasio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{,} \PY{l+m+mi}{774}\PY{p}{,} \PY{l+m+mf}{0.86}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ca}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{40.078}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Calcio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ca}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{839}\PY{p}{,} \PY{l+m+mi}{1484}\PY{p}{,} \PY{l+m+mf}{1.55}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{44.956}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Escandio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1539}\PY{p}{,} \PY{l+m+mi}{2832}\PY{p}{,} \PY{l+m+mf}{2.99}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{47.867}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Titanio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ti}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1660}\PY{p}{,} \PY{l+m+mi}{3287}\PY{p}{,} \PY{l+m+mf}{4.54}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{V}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{50.942}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Vanadio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{V}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1890}\PY{p}{,} \PY{l+m+mi}{3380}\PY{p}{,} \PY{l+m+mf}{6.11}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{51.996}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cromo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1857}\PY{p}{,} \PY{l+m+mi}{2672}\PY{p}{,} \PY{l+m+mf}{7.19}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{54.938}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Manganeso}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1245}\PY{p}{,} \PY{l+m+mi}{1962}\PY{p}{,} \PY{l+m+mf}{7.43}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{55.845}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hierro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1535}\PY{p}{,} \PY{l+m+mi}{2750}\PY{p}{,} \PY{l+m+mf}{7.87}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Co}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{58.933}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cobalto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Co}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1495}\PY{p}{,} \PY{l+m+mi}{2870}\PY{p}{,} \PY{l+m+mf}{8.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ni}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{58.693}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Niquel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ni}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1453}\PY{p}{,} \PY{l+m+mi}{2732}\PY{p}{,} \PY{l+m+mf}{8.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{63.546}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cobre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1083}\PY{p}{,} \PY{l+m+mi}{2567}\PY{p}{,} \PY{l+m+mf}{8.96}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{65.39}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zinc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{420}\PY{p}{,} \PY{l+m+mi}{907}\PY{p}{,} \PY{l+m+mf}{7.13}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ga}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{69.723}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gallio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ga}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{,} \PY{l+m+mi}{2403}\PY{p}{,} \PY{l+m+mf}{5.91}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{72.64}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Germanio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{937}\PY{p}{,} \PY{l+m+mi}{2830}\PY{p}{,} \PY{l+m+mf}{5.32}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{As}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{74.922}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Arsénico}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{As}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{81}\PY{p}{,} \PY{l+m+mi}{613}\PY{p}{,} \PY{l+m+mf}{5.72}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Se}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{78.96}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Selenio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Se}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{217}\PY{p}{,} \PY{l+m+mi}{685}\PY{p}{,} \PY{l+m+mf}{4.79}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Br}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{79.904}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bromo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Br}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{59}\PY{p}{,} \PY{l+m+mf}{3.12}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{83.8}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kriptón}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{157}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{153}\PY{p}{,} \PY{l+m+mf}{3.75}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{85.468}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rubidio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{39}\PY{p}{,} \PY{l+m+mi}{688}\PY{p}{,} \PY{l+m+mf}{1.63}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{87.62}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Estroncio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{769}\PY{p}{,} \PY{l+m+mi}{1384}\PY{p}{,} \PY{l+m+mf}{2.54}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{88.906}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Itrio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1523}\PY{p}{,} \PY{l+m+mi}{3337}\PY{p}{,} \PY{l+m+mf}{4.47}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{91.224}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Circonio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1852}\PY{p}{,} \PY{l+m+mi}{4377}\PY{p}{,} \PY{l+m+mf}{6.51}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{92.906}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Niobio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2468}\PY{p}{,} \PY{l+m+mi}{4927}\PY{p}{,} \PY{l+m+mf}{8.57}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{95.94}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Molibdeno}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2617}\PY{p}{,} \PY{l+m+mi}{4612}\PY{p}{,} \PY{l+m+mf}{10.22}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{98.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tecnecio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2200}\PY{p}{,} \PY{l+m+mi}{4877}\PY{p}{,} \PY{l+m+mf}{11.5}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ru}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{101.07}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rutenio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ru}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2250}\PY{p}{,} \PY{l+m+mi}{3900}\PY{p}{,} \PY{l+m+mf}{12.37}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{102.906}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rodio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1966}\PY{p}{,} \PY{l+m+mi}{3727}\PY{p}{,} \PY{l+m+mf}{12.41}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{106.42}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Paladio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1552}\PY{p}{,} \PY{l+m+mi}{2927}\PY{p}{,} \PY{l+m+mf}{12.02}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{107.868}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Plata}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{962}\PY{p}{,} \PY{l+m+mi}{2212}\PY{p}{,} \PY{l+m+mf}{10.5}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{112.411}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cadmio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{321}\PY{p}{,} \PY{l+m+mi}{765}\PY{p}{,} \PY{l+m+mf}{8.65}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{In}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{114.818}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Indio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{In}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{157}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mf}{7.31}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{118.71}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Estaño}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{232}\PY{p}{,} \PY{l+m+mi}{2270}\PY{p}{,} \PY{l+m+mf}{7.31}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{121.76}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Antimonio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{630}\PY{p}{,} \PY{l+m+mi}{1750}\PY{p}{,} \PY{l+m+mf}{6.68}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{127.6}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Telurio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Te}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{449}\PY{p}{,} \PY{l+m+mi}{990}\PY{p}{,} \PY{l+m+mf}{6.24}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{I}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{126.905}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Yodo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{I}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{114}\PY{p}{,} \PY{l+m+mi}{184}\PY{p}{,} \PY{l+m+mf}{4.93}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Xe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{131.293}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Xenón}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Xe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{112}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{108}\PY{p}{,} \PY{l+m+mf}{5.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{132.906}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cesio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{29}\PY{p}{,} \PY{l+m+mi}{678}\PY{p}{,} \PY{l+m+mf}{1.87}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ba}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{137.327}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bario}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ba}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{725}\PY{p}{,} \PY{l+m+mi}{1140}\PY{p}{,} \PY{l+m+mf}{3.59}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{La}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{138.906}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lantano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{La}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{920}\PY{p}{,} \PY{l+m+mi}{3469}\PY{p}{,} \PY{l+m+mf}{6.15}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ce}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{140.116}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cerio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ce}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{795}\PY{p}{,} \PY{l+m+mi}{3257}\PY{p}{,} \PY{l+m+mf}{6.77}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{140.908}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Praseodimio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{935}\PY{p}{,} \PY{l+m+mi}{3127}\PY{p}{,} \PY{l+m+mf}{6.77}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{144.24}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Neodimio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1010}\PY{p}{,} \PY{l+m+mi}{3127}\PY{p}{,} \PY{l+m+mf}{7.01}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{145.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Prometio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{3000}\PY{p}{,} \PY{l+m+mf}{7.3}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{150.36}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Samario}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1072}\PY{p}{,} \PY{l+m+mi}{1900}\PY{p}{,} \PY{l+m+mf}{7.52}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Eu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{151.964}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Europio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Eu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{822}\PY{p}{,} \PY{l+m+mi}{1597}\PY{p}{,} \PY{l+m+mf}{5.24}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{157.25}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gadolinio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1311}\PY{p}{,} \PY{l+m+mi}{3233}\PY{p}{,} \PY{l+m+mf}{7.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{158.925}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Terbio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1360}\PY{p}{,} \PY{l+m+mi}{3041}\PY{p}{,} \PY{l+m+mf}{8.23}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{162.5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dispronsio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1412}\PY{p}{,} \PY{l+m+mi}{2562}\PY{p}{,} \PY{l+m+mf}{8.55}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ho}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{164.93}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Holmio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ho}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1470}\PY{p}{,} \PY{l+m+mi}{2720}\PY{p}{,} \PY{l+m+mf}{8.8}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Er}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{167.259}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Erbio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Er}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1522}\PY{p}{,} \PY{l+m+mi}{2510}\PY{p}{,} \PY{l+m+mf}{9.07}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{168.934}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tulio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1545}\PY{p}{,} \PY{l+m+mi}{1727}\PY{p}{,} \PY{l+m+mf}{9.32}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Yb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{173.04}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iterbio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Yb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{824}\PY{p}{,} \PY{l+m+mi}{1466}\PY{p}{,} \PY{l+m+mf}{6.9}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{174.967}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lutecio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1656}\PY{p}{,} \PY{l+m+mi}{3315}\PY{p}{,} \PY{l+m+mf}{9.84}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{178.49}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hafnio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2150}\PY{p}{,} \PY{l+m+mi}{5400}\PY{p}{,} \PY{l+m+mf}{13.31}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{180.948}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tantalio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2996}\PY{p}{,} \PY{l+m+mi}{5425}\PY{p}{,} \PY{l+m+mf}{16.65}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{183.84}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volframio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3410}\PY{p}{,} \PY{l+m+mi}{5660}\PY{p}{,} \PY{l+m+mf}{19.35}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Re}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{186.207}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Renio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Re}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3180}\PY{p}{,} \PY{l+m+mi}{5627}\PY{p}{,} \PY{l+m+mf}{21.04}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Os}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{190.23}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Osmio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Os}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3045}\PY{p}{,} \PY{l+m+mi}{5027}\PY{p}{,} \PY{l+m+mf}{22.6}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ir}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{192.217}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iridio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ir}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2410}\PY{p}{,} \PY{l+m+mi}{4527}\PY{p}{,} \PY{l+m+mf}{22.4}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{195.078}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Platino}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1772}\PY{p}{,} \PY{l+m+mi}{3827}\PY{p}{,} \PY{l+m+mf}{21.45}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Au}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{196.967}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Oro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Au}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1064}\PY{p}{,} \PY{l+m+mi}{2807}\PY{p}{,} \PY{l+m+mf}{19.32}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{200.59}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mercurio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{39}\PY{p}{,} \PY{l+m+mi}{357}\PY{p}{,} \PY{l+m+mf}{13.55}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{204.383}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Talio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{303}\PY{p}{,} \PY{l+m+mi}{1457}\PY{p}{,} \PY{l+m+mf}{11.85}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{207.2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Plomo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{327}\PY{p}{,} \PY{l+m+mi}{1740}\PY{p}{,} \PY{l+m+mf}{11.35}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{208.98}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bismuto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{271}\PY{p}{,} \PY{l+m+mi}{1560}\PY{p}{,} \PY{l+m+mf}{9.75}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Po}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{209.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Polonio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Po}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{254}\PY{p}{,} \PY{l+m+mi}{962}\PY{p}{,} \PY{l+m+mf}{9.3}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{At}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{210.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Astato}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{At}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{302}\PY{p}{,} \PY{l+m+mi}{337}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{222.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Radon}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{71}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{62}\PY{p}{,} \PY{l+m+mf}{9.73}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{223.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Francio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{27}\PY{p}{,} \PY{l+m+mi}{677}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ra}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{226.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Radio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ra}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{1737}\PY{p}{,} \PY{l+m+mf}{5.5}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ac}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{227.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Actinio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ac}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1050}\PY{p}{,} \PY{l+m+mi}{3200}\PY{p}{,} \PY{l+m+mf}{10.07}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Th}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{232.038}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Th}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1750}\PY{p}{,} \PY{l+m+mi}{4790}\PY{p}{,} \PY{l+m+mf}{11.72}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{231.036}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Protactinio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1568}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{15.4}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{U}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{238.029}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Uranio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{U}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1132}\PY{p}{,} \PY{l+m+mi}{3818}\PY{p}{,} \PY{l+m+mf}{18.95}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Np}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{237.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Neptunio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Np}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{640}\PY{p}{,} \PY{l+m+mi}{3902}\PY{p}{,} \PY{l+m+mf}{20.2}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{244.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Plutonio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{640}\PY{p}{,} \PY{l+m+mi}{3235}\PY{p}{,} \PY{l+m+mf}{19.84}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Am}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{243.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Americio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Am}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{994}\PY{p}{,} \PY{l+m+mi}{2607}\PY{p}{,} \PY{l+m+mf}{13.67}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{247.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Curio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1340}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{13.5}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bk}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{247.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Berkelio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bk}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{986}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{14.78}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{251.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Californio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{15.1}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Es}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{252.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Einsteinio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Es}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{860}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{257.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fermio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1527}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Md}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{258.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mendelevio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Md}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{259.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nobelio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{827}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{262.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lawrencio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1627}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{261.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rutherfordio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Db}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{262.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dubnio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Db}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{266.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seaborgio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{264.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bohrio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bh}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{277.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hassio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{,}
+         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{268.0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Meitnerio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{]}\PY{p}{\PYZcb{}}
+         
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
